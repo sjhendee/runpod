@@ -39,4 +39,3 @@ app.post('/tryon', async (req, res) => {
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => console.log(`Tryon stub listening on :${port}`));
-
