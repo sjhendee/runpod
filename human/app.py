@@ -37,6 +37,12 @@ class GarmentExtractIn(BaseModel):
 def api_health():
     return {"ok": True, "service": "human", "version": VERSION, "uptime_s": round(time.time()-START, 3)}
 
+
+@app.get("/ping")
+def ping():
+    """RunPod's load balancer probes /ping; respond with 200 so workers stay healthy."""
+    return {"ok": True, "service": "human", "version": VERSION}
+
 @app.post("/api/echo")
 def api_echo(body: EchoIn):
     return {"echo": body.message}
