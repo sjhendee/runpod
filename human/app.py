@@ -125,4 +125,4 @@ def detect(body: DetectIn):
 
 @app.post("/garment/extract")
 def garment_extract(body: GarmentExtractIn):
-    return api_garment_extract(body)
+    return api_garment_extract(body) 
