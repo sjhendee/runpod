@@ -9,7 +9,8 @@ import requests
 from PIL import Image, ImageOps
 try:
     from .detector import detect_items, extract_best_garment
-except Exception:
+except Exception as e:
+    print("[detector] import failed:", e)
     detect_items = None  # type: ignore
     extract_best_garment = None  # type: ignore
 
@@ -67,7 +68,7 @@ def api_segment(body: ImageIn):
 def api_detect(body: DetectIn):
     if detect_items is None:
         labels = ["Top","Sweater","Pants","Skirt/Dress","Shoes","Bag","Accessory"][: max(1, min(body.maxItems or 8, 8))]
-        return {"ok": True, "items": [{"label": l} for l in labels]}
+        return {"ok": True, "items": [{"label": l} for l in labels], "note": "detector unavailable"}
     try:
         items = detect_items(body.imageUrl, max_items=body.maxItems or 8)
         return {"ok": True, "items": items}
