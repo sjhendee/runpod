@@ -1,4 +1,4 @@
-#Dockerfile Update 092325-2
+#Dockerfile Update 092325-3
 FROM python:3.10-slim
 
 # System deps for networking and curl
